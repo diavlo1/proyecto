@@ -12,6 +12,7 @@ route.get('/',(req,res) => {
             throw err
         }else{
             res.json(resul)
+            console.log("hola k tal")
         }
     });
 })
