@@ -36,9 +36,6 @@ route.post('/',function(req,res) {
     
     let sql = 'Insert into tipoPago set ?';
     let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,data, function(err,resul){
             if(err){
                 console.log(err.message);
@@ -47,11 +44,6 @@ route.post('/',function(req,res) {
                 res.json({ mensaje:'Se agrego un campo' });
             }
         });
-      
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
 route.put('/:codPago',function(req,res) {
     let codigo = req.params.codPago;    
@@ -59,10 +51,7 @@ route.put('/:codPago',function(req,res) {
     let descripcion  =req.body.descripcion;
 
     let sql = 'Update tipoPago set nombre = ?, descripcion = ? where codPago = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
+
         conexion.query(sql,[nombre ,descripcion ,codigo],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -71,19 +60,10 @@ route.put('/:codPago',function(req,res) {
                 res.json({ mensaje:'Se actualizo un campo' });
             }
         }); 
-      
-    }else{
-        res.json(err);    
-    }
-    }) 
  });
  route.delete('/:codPago',function(req,res) {
     let codigo = req.params.codPago ;
     let sql = 'Delete from tipoPago where codPago = ?';
-    let tok=req.header('Authorization')
-    jwt.verify(tok, jwt_secret, function (err,datos)
-    {
-    if(datos){
         conexion.query(sql,[codigo],function(err,resul){
             if(err){
                 console.log(err.message);
@@ -92,11 +72,6 @@ route.put('/:codPago',function(req,res) {
                 res.json({ mensaje:'Se elimino un campo' });
             }
         });
-       
-    }else{
-        res.json(err);    
-    }
-    }) 
 });
 
 

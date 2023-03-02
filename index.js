@@ -4,8 +4,13 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+const test= require ('./middlewares/authenticated');
 
 const login = require('./rutas/login');
+app.use('/login',login);
+const acceso = require('./rutas/acceso');
+app.use('/acceso',acceso);
+app.use(test)
 const historial =require('./rutas/historial')
 const factura =require('./rutas/factura')
 const factura_det =require('./rutas/factura_det')
@@ -16,8 +21,6 @@ const empleado =require('./rutas/empleado')
 const servicio =require('./rutas/servicio')
 const tipopago =require('./rutas/pago')
 
-
-app.use('/login',login);
 app.use('/historial',historial);
 app.use('/factura',factura); 
 app.use('/det',factura_det);
